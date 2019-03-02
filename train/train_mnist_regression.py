@@ -94,5 +94,5 @@ model.fit_generator(
 	validation_steps=nb_test_samples / batch_size,
 	verbose=1,
 	#callbacks=[checkpointer, early_stopping, tensorboard]
-    callbacks=[checkpointer, tensorboard]
+    callbacks=[tensorboard]
 )
