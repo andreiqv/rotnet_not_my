@@ -52,7 +52,7 @@ model.summary()
 
 # model compilation
 model.compile(loss=angle_error_regression,
-              optimizer='adam')
+			  optimizer='adam')
 
 # training parameters
 batch_size = 128
@@ -60,34 +60,35 @@ nb_epoch = 50
 
 output_folder = 'models'
 if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
+	os.makedirs(output_folder)
 
 # callbacks
 checkpointer = ModelCheckpoint(
-    filepath=os.path.join(output_folder, model_name + '.hdf5'),
-    save_best_only=True
+	filepath=os.path.join(output_folder, model_name + '.hdf5'),
+	save_best_only=True
 )
 early_stopping = EarlyStopping(patience=2)
 tensorboard = TensorBoard()
 
 # training loop
 model.fit_generator(
-    RotNetDataGenerator(
-        X_train,
-        batch_size=batch_size,
-        one_hot=False,
-        preprocess_func=binarize_images,
-        shuffle=True
-    ),
-    steps_per_epoch=nb_train_samples / batch_size,
-    epochs=nb_epoch,
-    validation_data=RotNetDataGenerator(
-        X_test,
-        one_hot=False,
-        preprocess_func=binarize_images,
-        batch_size=batch_size
-    ),
-    validation_steps=nb_test_samples / batch_size,
-    verbose=1,
-    callbacks=[checkpointer, early_stopping, tensorboard]
+	RotNetDataGenerator(
+		X_train,
+		batch_size=batch_size,
+		one_hot=False,
+		preprocess_func=binarize_images,
+		shuffle=True
+	),
+	steps_per_epoch=nb_train_samples / batch_size,
+	epochs=nb_epoch,
+	validation_data=RotNetDataGenerator(
+		X_test,
+		one_hot=False,
+		preprocess_func=binarize_images,
+		batch_size=batch_size
+	),
+	validation_steps=nb_test_samples / batch_size,
+	verbose=1,
+	#callbacks=[checkpointer, early_stopping, tensorboard]
+    callbacks=[checkpointer, tensorboard]
 )
