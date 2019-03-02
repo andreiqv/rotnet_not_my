@@ -61,7 +61,7 @@ elif selected_model == 2:
 	base_model = ResNet50(weights=None, include_top=False, pooling='avg', 
 		input_tensor=inputs)
 	x = base_model.output
-	x = layers.Dense(1, activation='sigmoid', name='output')(x)
+	x = keras.layers.Dense(1, activation='sigmoid', name='output')(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_ResNet50')
 
 else:
