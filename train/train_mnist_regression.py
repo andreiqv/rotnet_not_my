@@ -60,7 +60,7 @@ model.compile(loss=angle_error_regression,
 
 # training parameters
 batch_size = 128
-nb_epoch = 50
+nb_epoch = 500
 
 output_folder = 'models'
 if not os.path.exists(output_folder):
