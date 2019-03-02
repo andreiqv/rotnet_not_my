@@ -53,9 +53,9 @@ model.summary()
 
 # model compilation
 model.compile(loss=angle_error_regression,
-			optimizer=keras.optimizers.Adagrad(lr=0.01)
-			#optimizer='adagrad')
-			#optimizer='adam')
+			#optimizer=keras.optimizers.Adagrad(lr=0.01)
+			#optimizer='adagrad'
+			optimizer='adam'
 			)
 
 # training parameters
