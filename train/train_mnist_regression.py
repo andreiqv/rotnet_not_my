@@ -3,6 +3,7 @@ from __future__ import print_function
 import os
 import sys
 
+import keras
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from keras.datasets import mnist
 from keras.layers import Dense, Dropout, Flatten, Input
@@ -52,7 +53,10 @@ model.summary()
 
 # model compilation
 model.compile(loss=angle_error_regression,
-			  optimizer='adam')
+			optimizer=keras.optimizers.Adagrad(lr=0.1)
+			#optimizer='adagrad')
+			#optimizer='adam')
+			)
 
 # training parameters
 batch_size = 128
